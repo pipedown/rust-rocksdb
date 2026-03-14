@@ -90,8 +90,12 @@ pub unsafe extern "C" fn full_merge_callback(raw_cb: *mut c_void,
     let cb = &mut *(raw_cb as *mut MergeOperatorCallback);
     let operands = &mut MergeOperands::new(operands_list, operands_list_len, num_operands);
     let key = slice::from_raw_parts(raw_key as *const u8, key_len as usize);
-    let oldval = slice::from_raw_parts(existing_value as *const u8, existing_value_len as usize);
-    let mut result = (cb.merge_fn)(key, Some(oldval), operands);
+    let oldval = if existing_value.is_null() {
+        None
+    } else {
+        Some(slice::from_raw_parts(existing_value as *const u8, existing_value_len as usize))
+    };
+    let mut result = (cb.merge_fn)(key, oldval, operands);
     result.shrink_to_fit();
     // TODO(tan) investigate zero-copy techniques to improve performance
     let buf = libc::malloc(result.len() as size_t);
