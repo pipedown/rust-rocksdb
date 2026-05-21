@@ -1,6 +1,6 @@
 [package]
 name = "noise_search_deps_librocksdb-sys"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["Volker Mische <volker.mische@gmail.com>"]
 license = "MIT/Apache-2.0/BSD-3-Clause"
 description = "Fork of librocksdb-sys crate for Noise"
