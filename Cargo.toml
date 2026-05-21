@@ -22,7 +22,7 @@ valgrind = []
 
 [dependencies]
 libc = "0.2"
-noise_search_deps_librocksdb-sys = { path = "librocksdb-sys", version = "0.1.0" }
+noise_search_deps_librocksdb-sys = { path = "librocksdb-sys", version = "0.2.0" }
 
 [dev-dependencies]
 integer-encoding = "1.0.3"
